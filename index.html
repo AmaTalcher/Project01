@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Sister Day, Gudly!</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Dark background */
+            color: #e2e8f0; /* Light text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            max-width: 90%;
+            width: 500px;
+            padding: 2.5rem;
+            background-color: #2d3748; /* Slightly lighter card background */
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.5s ease-in-out;
+        }
+        .gradient-text {
+            background-image: linear-gradient(to right, #6b46c1, #a066ff, #f687b3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .password-container, .message-container {
+            transition: opacity 0.5s ease-in-out;
+        }
+        .hidden-content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-container" class="container">
+        <!-- Password Entry Section -->
+        <div id="password-container" class="password-container">
+            <h1 class="text-3xl font-bold mb-4">A Sister's Special Message</h1>
+            <p class="mb-6">Please enter the password to unlock this message for Gudly.</p>
+            <div class="relative w-full mb-4">
+                <input type="password" id="password-input" placeholder="Password" class="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300">
+            </div>
+            <button id="unlock-btn" class="w-full py-3 px-4 rounded-md bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-800">
+                Unlock
+            </button>
+            <p id="error-message" class="text-red-400 mt-3"></p>
+        </div>
+
+        <!-- Hidden Message Section -->
+        <div id="message-container" class="message-container hidden-content">
+            <h1 class="gradient-text text-4xl mb-4">Happy Sister Day, Gudly! ❤️</h1>
+            <p class="text-lg mb-6">
+                To the one who shares my history and my heart. You're more than just my sister; you're my best friend, my confidante, and my biggest supporter.
+            </p>
+            <p class="text-lg mb-6">
+                Thank you for every laugh, every piece of advice, and every moment of shared joy. The world is a better place with you in it.
+            </p>
+            <p class="text-lg">
+                Wishing you a day as wonderful and special as you are!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('unlock-btn').addEventListener('click', () => {
+            const passwordInput = document.getElementById('password-input');
+            const password = passwordInput.value.trim();
+            const errorMessage = document.getElementById('error-message');
+            const passwordContainer = document.getElementById('password-container');
+            const messageContainer = document.getElementById('message-container');
+
+            if (password === 'GUDLY') {
+                errorMessage.textContent = '';
+                passwordContainer.style.opacity = '0';
+                setTimeout(() => {
+                    passwordContainer.classList.add('hidden-content');
+                    messageContainer.classList.remove('hidden-content');
+                    messageContainer.style.opacity = '1';
+                }, 500); // Wait for the fade-out to complete
+            } else {
+                errorMessage.textContent = 'Incorrect password. Please try again.';
+                passwordInput.value = ''; // Clear the input
+            }
+        });
+    </script>
+
+</body>
+</html>
